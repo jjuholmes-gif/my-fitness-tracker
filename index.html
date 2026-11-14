@@ -1,54 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1">
-  <title>My Fitness Tracker</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #101820;
-      color: white;
-      padding: 20px;
-    }
-    h1 { color: #43d9a3; }
-    .card {
-      background: #202d38;
-      padding: 20px;
-      border-radius: 12px;
-      margin: 15px 0;
-    }
-  </style>
-</head>
-<body>
-  <h1>My Fitness Tracker</h1>
-  <p>Your personal health and fitness dashboard</p>
-
-  <div class="card">
-    <h2>Workout Tracker</h2>
-    <p>Track exercises, sets, reps, and weights.</p>
-  </div>
-
-  <div class="card">
-    <h2>Workout Planner</h2>
-    <p>Build schedules based on your goals.</p>
-  </div>
-
-  <div class="card">
-    <h2>Meal Tracker</h2>
-    <p>Log meals and nutrition.</p>
-  </div>
-
-  <div class="card">
-    <h2>Blood Sugar Tracker</h2>
-    <p>Monitor your glucose readings.</p>
-  </div>
-
-  <div class="card">
-    <h2>Progress Tracking</h2>
-    <p>Get recommendations for weights and reps.</p>
-  </div>
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101820"><title>My Fitness Tracker</title>
+<style>
+:root{font-family:system-ui,-apple-system,Arial,sans-serif;color:#eef6f5;background:#101820}*{box-sizing:border-box}body{margin:0}header{padding:22px 18px;background:#17242e;border-bottom:1px solid #31434b}h1{font-size:1.6rem;color:#43d9a3;margin:0 0 5px}h2{font-size:1.18rem;margin:0 0 14px}p{color:#b9c9cd}main{max-width:780px;margin:auto;padding:16px 16px 90px}.card{background:#202d38;border:1px solid #344753;border-radius:14px;padding:18px;margin-bottom:16px}nav{display:flex;gap:7px;overflow:auto;padding:12px;background:#101820;position:sticky;top:0;z-index:2}nav button{white-space:nowrap}button{background:#2d4550;border:0;color:#fff;border-radius:9px;padding:11px 13px;font-weight:650;cursor:pointer}button.active,button.primary{background:#147e62}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #43d9a3}label{display:block;font-size:.89rem;margin:10px 0 4px;color:#d2e2e2}input,select{width:100%;border:1px solid #52636a;background:#101820;color:#fff;border-radius:8px;padding:11px;font:inherit}form button{margin-top:15px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.wide{grid-column:1/-1}.muted,small{color:#aabfc3}.entry{border-top:1px solid #3c4c54;padding:11px 0;overflow-wrap:anywhere}.entry:first-child{border-top:0}.entry button{float:right;padding:5px 9px;background:#68444a}.stat{font-size:1.4rem;color:#43d9a3;font-weight:700}.notice{padding:12px;border-radius:9px;background:#263d42;color:#d6f5eb}.hidden{display:none}.exercise-row{padding:9px 0;border-bottom:1px solid #384a52}footer{padding:15px;text-align:center;color:#9bb0b6;font-size:.8rem}@media(max-width:390px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}}
+</style></head><body><header><h1>My Fitness Tracker</h1><div class="muted">Workouts • Nutrition • Glucose • Progress</div></header>
+<nav aria-label="Sections"><button class="active" data-tab="home">Home</button><button data-tab="workouts">Workouts</button><button data-tab="planner">Planner</button><button data-tab="meals">Meals</button><button data-tab="glucose">Blood Sugar</button></nav>
+<main>
+<section id="home"><div class="card"><h2>Your dashboard</h2><div class="grid"><div><div class="muted">Workout sets logged</div><div class="stat" id="workoutCount">0</div></div><div><div class="muted">Meals logged</div><div class="stat" id="mealCount">0</div></div><div><div class="muted">Glucose readings</div><div class="stat" id="glucoseCount">0</div></div><div><div class="muted">Scheduled days</div><div class="stat" id="planCount">0</div></div></div></div><div class="card"><h2>Getting started</h2><p>Build a weekly training plan, record sets as you lift, and log your meals and blood sugar readings.</p><div class="notice">This prototype stores information only in this browser on this device. It does not yet sync or connect to Supabase. Avoid entering sensitive health information until secure sign-in and syncing are tested.</div></div></section>
+<section id="workouts" class="hidden"><div class="card"><h2>Log a lifting set</h2><form id="workoutForm"><label for="exercise">Exercise</label><select id="exercise" required></select><div class="grid"><div><label for="weight">Weight (lb)</label><input id="weight" type="number" min="0" max="2000" step="0.5" required></div><div><label for="reps">Repetitions</label><input id="reps" type="number" min="1" max="100" step="1" required></div><div><label for="effort">Effort (reps left in reserve)</label><select id="effort"><option value="2">2 or more</option><option value="1">1</option><option value="0">0 (max effort)</option></select></div><div><label for="setDate">Date</label><input id="setDate" type="date" required></div></div><button class="primary">Save set</button></form></div><div class="card"><h2>Lifting history and suggestions</h2><div class="muted">Suggestion rule: for an 8–12 rep target, add reps first. After two sets of 12 with at least 2 reps in reserve, consider a small weight increase next time. These are general training suggestions, not medical advice.</div><div id="workoutHistory"></div></div></section>
+<section id="planner" class="hidden"><div class="card"><h2>Build your weekly schedule</h2><form id="planForm"><label for="goal">Primary goal</label><select id="goal"><option value="general">General fitness and weight management</option><option value="strength">Strength</option><option value="muscle">Build muscle</option></select><label for="days">Workouts per week</label><select id="days"><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option></select><label for="equipment">Equipment</label><select id="equipment"><option value="gym">Full gym</option><option value="home">Dumbbells / bodyweight</option></select><button class="primary">Generate schedule</button></form></div><div class="card"><h2>My schedule</h2><div id="planOutput" class="muted">Generate a plan to see your training days.</div><p class="muted">Start with manageable loads and leave recovery days. Adjust around pain, mobility, and your healthcare professional's advice.</p></div></section>
+<section id="meals" class="hidden"><div class="card"><h2>Log a meal</h2><form id="mealForm"><label for="mealName">Food or meal</label><input id="mealName" maxlength="100" required placeholder="Example: Chicken and rice"><div class="grid"><div><label for="calories">Calories</label><input id="calories" type="number" min="0" max="10000" required></div><div><label for="protein">Protein (g)</label><input id="protein" type="number" min="0" max="1000" step="0.1" required></div><div><label for="carbs">Carbs (g)</label><input id="carbs" type="number" min="0" max="1000" step="0.1" required></div><div><label for="fat">Fat (g)</label><input id="fat" type="number" min="0" max="1000" step="0.1" required></div></div><label for="mealDate">Date</label><input id="mealDate" type="date" required><button class="primary">Save meal</button></form></div><div class="card"><h2>Meal history</h2><div id="mealHistory"></div></div></section>
+<section id="glucose" class="hidden"><div class="card"><h2>Log a blood sugar reading</h2><form id="glucoseForm"><label for="glucoseValue">Blood glucose (mg/dL)</label><input id="glucoseValue" type="number" min="1" max="1000" step="1" required><label for="glucoseContext">When measured</label><select id="glucoseContext"><option>Fasting</option><option>Before meal</option><option>After meal</option><option>Bedtime</option><option>Other</option></select><label for="glucoseDate">Date</label><input id="glucoseDate" type="date" required><button class="primary">Save reading</button></form></div><div class="card"><h2>Reading history</h2><p class="muted">This log is for recording values, not diagnosing or adjusting medication. Follow your personal glucose targets and care plan.</p><div id="glucoseHistory"></div></div></section>
+</main><footer>Personal prototype • Local browser storage • No account connection yet</footer>
+<script>
+'use strict';
+const catalog=[['Bench Press','Chest','gym'],['Incline Dumbbell Press','Chest','both'],['Push-Up','Chest','both'],['Cable Fly','Chest','gym'],['Overhead Press','Shoulders','gym'],['Dumbbell Shoulder Press','Shoulders','both'],['Lateral Raise','Shoulders','both'],['Front Raise','Shoulders','both'],['Barbell Row','Back','gym'],['Seated Cable Row','Back','gym'],['Lat Pulldown','Back','gym'],['Pull-Up','Back','both'],['One-Arm Dumbbell Row','Back','both'],['Face Pull','Back','gym'],['Biceps Curl','Arms','both'],['Hammer Curl','Arms','both'],['Triceps Pushdown','Arms','gym'],['Overhead Triceps Extension','Arms','both'],['Squat','Legs','gym'],['Goblet Squat','Legs','both'],['Leg Press','Legs','gym'],['Leg Extension','Legs','gym'],['Leg Curl','Legs','gym'],['Romanian Deadlift','Legs','both'],['Dumbbell Lunge','Legs','both'],['Calf Raise','Legs','both'],['Glute Bridge','Legs','both'],['Plank','Core','both'],['Crunch','Core','both'],['Dead Bug','Core','both'],['Bird Dog','Core','both']];
+const KEY='my-fitness-tracker-prototype-v1';
+let db;try{db=JSON.parse(localStorage.getItem(KEY)||'{}')}catch{db={}};
+for(const k of ['workouts','meals','glucose'])if(!Array.isArray(db[k]))db[k]=[];
+function save(){try{localStorage.setItem(KEY,JSON.stringify(db))}catch{alert('This browser could not save the entry. Check private browsing or storage settings.')}}
+const el=id=>document.getElementById(id),today=()=>new Date().toLocaleDateString('en-CA');
+for(const id of ['setDate','mealDate','glucoseDate'])el(id).value=today();
+const select=el('exercise');for(const [name,group] of catalog){const o=document.createElement('option');o.value=name;o.textContent=group+' — '+name;select.append(o)}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('main section').forEach(s=>s.classList.toggle('hidden',s.id!==b.dataset.tab))}));
+function addText(parent,tag,value,className){const node=document.createElement(tag);node.textContent=value;if(className)node.className=className;parent.append(node);return node}
+function renderEntries(container,items,formatter,key){container.replaceChildren();if(!items.length){addText(container,'p','No entries yet.','muted');return}items.slice().reverse().forEach((item,i)=>{const row=document.createElement('div');row.className='entry';const btn=document.createElement('button');btn.textContent='Delete';btn.setAttribute('aria-label','Delete entry');btn.addEventListener('click',()=>{if(confirm('Delete this entry?')){db[key].splice(items.length-1-i,1);save();render()}});row.append(btn);addText(row,'div',formatter(item));container.append(row)})}
+function suggestion(name){const sets=db.workouts.filter(x=>x.name===name).slice(-2);if(sets.length<2)return 'Log another set to build a trend.';const [a,b]=sets;if(a.weight===b.weight&&a.reps>=12&&b.reps>=12&&a.effort>=2&&b.effort>=2)return 'Consider increasing weight about 2.5–5% next session, if technique remains comfortable.';if(b.reps<8)return 'Keep the weight or reduce it until 8 controlled reps are manageable.';if(b.reps<12)return 'Try adding one rep next time with good technique.';return 'Maintain weight while you confirm consistent, comfortable sets.'}
+function render(){el('workoutCount').textContent=db.workouts.length;el('mealCount').textContent=db.meals.length;el('glucoseCount').textContent=db.glucose.length;el('planCount').textContent=db.plan?.length||0;renderEntries(el('workoutHistory'),db.workouts,x=>`${x.date}: ${x.name} — ${x.weight} lb × ${x.reps} reps. ${suggestion(x.name)}`,'workouts');renderEntries(el('mealHistory'),db.meals,x=>`${x.date}: ${x.name} — ${x.calories} cal, P ${x.protein}g, C ${x.carbs}g, F ${x.fat}g`,'meals');renderEntries(el('glucoseHistory'),db.glucose,x=>`${x.date}: ${x.value} mg/dL (${x.context})`,'glucose');renderPlan()}
+function onForm(id,fn){el(id).addEventListener('submit',e=>{e.preventDefault();fn();save();render();e.target.reset();for(const dateId of ['setDate','mealDate','glucoseDate'])el(dateId).value=today()})}
+onForm('workoutForm',()=>db.workouts.push({name:select.value,weight:+el('weight').value,reps:+el('reps').value,effort:+el('effort').value,date:el('setDate').value}));
+onForm('mealForm',()=>db.meals.push({name:el('mealName').value.trim(),calories:+el('calories').value,protein:+el('protein').value,carbs:+el('carbs').value,fat:+el('fat').value,date:el('mealDate').value}));
+onForm('glucoseForm',()=>db.glucose.push({value:+el('glucoseValue').value,context:el('glucoseContext').value,date:el('glucoseDate').value}));
+const templates={gym:{upper:['Bench Press','Seated Cable Row','Dumbbell Shoulder Press','Lat Pulldown','Biceps Curl','Triceps Pushdown'],lower:['Squat','Romanian Deadlift','Leg Press','Leg Curl','Calf Raise','Plank'],full:['Goblet Squat','Bench Press','Seated Cable Row','Romanian Deadlift','Dumbbell Shoulder Press','Plank'],push:['Bench Press','Incline Dumbbell Press','Overhead Press','Lateral Raise','Triceps Pushdown'],pull:['Lat Pulldown','Barbell Row','Face Pull','Biceps Curl','Hammer Curl'],legs:['Squat','Leg Press','Romanian Deadlift','Leg Curl','Calf Raise']},home:{upper:['Push-Up','One-Arm Dumbbell Row','Dumbbell Shoulder Press','Lateral Raise','Biceps Curl','Overhead Triceps Extension'],lower:['Goblet Squat','Romanian Deadlift','Dumbbell Lunge','Glute Bridge','Calf Raise','Dead Bug'],full:['Goblet Squat','Push-Up','One-Arm Dumbbell Row','Romanian Deadlift','Dumbbell Shoulder Press','Plank'],push:['Push-Up','Dumbbell Shoulder Press','Lateral Raise','Overhead Triceps Extension'],pull:['One-Arm Dumbbell Row','Biceps Curl','Hammer Curl','Bird Dog'],legs:['Goblet Squat','Romanian Deadlift','Dumbbell Lunge','Glute Bridge','Calf Raise']}};
+const patterns={2:['Full Body A','Full Body B'],3:['Full Body A','Full Body B','Full Body C'],4:['Upper A','Lower A','Upper B','Lower B'],5:['Upper A','Lower A','Push','Pull','Legs'],6:['Push A','Pull A','Legs A','Push B','Pull B','Legs B']};
+el('planForm').addEventListener('submit',e=>{e.preventDefault();const days=+el('days').value,goal=el('goal').value,equipment=el('equipment').value;db.plan=patterns[days].map((label,i)=>{const kind=label.toLowerCase().split(' ')[0];return {label,day:i+1,exercises:templates[equipment][kind==='full'?'full':kind],sets:goal==='strength'?3:2,reps:goal==='strength'?'5–8':goal==='muscle'?'8–12':'8–12'}});save();render()});
+function renderPlan(){const out=el('planOutput');out.replaceChildren();if(!db.plan?.length){addText(out,'p','Generate a plan to see your training days.');return}addText(out,'p','Suggested sessions, spaced through the week with rest or light-activity days as needed.','muted');for(const p of db.plan){const row=document.createElement('div');row.className='exercise-row';addText(row,'strong',`Session ${p.day}: ${p.label}`);for(const x of p.exercises)addText(row,'div',`${x} — ${p.sets} sets × ${p.reps} reps`,'muted');out.append(row)}}
+render();
+</script></body></html>
