@@ -15,7 +15,7 @@
 <script>
 'use strict';
 const SUPABASE_URL="https://gexjlmhnmubbrjwoetgl.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY="PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE";
+const SUPABASE_PUBLISHABLE_KEY="https://gexjlmhnmubbrjwoetgl.supabase.co/rest/v1/";
 const client=SUPABASE_PUBLISHABLE_KEY.startsWith("sb_publishable_") && window.supabase ? window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY) : null;
 const catalog=[['Bench Press','Chest','gym'],['Incline Dumbbell Press','Chest','both'],['Push-Up','Chest','both'],['Cable Fly','Chest','gym'],['Overhead Press','Shoulders','gym'],['Dumbbell Shoulder Press','Shoulders','both'],['Lateral Raise','Shoulders','both'],['Front Raise','Shoulders','both'],['Barbell Row','Back','gym'],['Seated Cable Row','Back','gym'],['Lat Pulldown','Back','gym'],['Pull-Up','Back','both'],['One-Arm Dumbbell Row','Back','both'],['Face Pull','Back','gym'],['Biceps Curl','Arms','both'],['Hammer Curl','Arms','both'],['Triceps Pushdown','Arms','gym'],['Overhead Triceps Extension','Arms','both'],['Squat','Legs','gym'],['Goblet Squat','Legs','both'],['Leg Press','Legs','gym'],['Leg Extension','Legs','gym'],['Leg Curl','Legs','gym'],['Romanian Deadlift','Legs','both'],['Dumbbell Lunge','Legs','both'],['Calf Raise','Legs','both'],['Glute Bridge','Legs','both'],['Plank','Core','both'],['Crunch','Core','both'],['Dead Bug','Core','both'],['Bird Dog','Core','both']];
 let db={workouts:[],meals:[],glucose:[],plan:[]};
